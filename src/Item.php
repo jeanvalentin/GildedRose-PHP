@@ -84,9 +84,13 @@ final class Item
             case self::$legendary:
                 break;
             default:
-                --$this->quality;
+                $quality_decrease = 1;
+                if ($this->isConjured()) {
+                    $quality_decrease *= 2;
+                }
+                $this->quality -= $quality_decrease;
                 if ($this->sell_in <= 0) {
-                    --$this->quality;
+                    $this->quality -= $quality_decrease;
                 }
                 break;
         }
