@@ -9,6 +9,21 @@ final class Item
     /**
      * @var string
      */
+    public static $aged = 'Aged Brie';
+
+    /**
+     * @var string
+     */
+    public static $backstage_passes = 'Backstage passes to a TAFKAL80ETC concert';
+
+    /**
+     * @var string
+     */
+    public static $legendary = 'Sulfuras, Hand of Ragnaros';
+
+    /**
+     * @var string
+     */
     public $name;
 
     /**
