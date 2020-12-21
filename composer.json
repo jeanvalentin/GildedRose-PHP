@@ -1,5 +1,5 @@
 {
-    "name": "emilybache/gilded-rose-refactoring-kata",
+    "name": "jeanvalentin/gildedrose-php",
     "description": "A kata to practice refactoring, tests and polymorphism",
     "require": {
         "php": "^7.2"
