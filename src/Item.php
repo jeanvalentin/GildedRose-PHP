@@ -24,6 +24,11 @@ final class Item
     /**
      * @var string
      */
+    public static $conjured = 'Conjured';
+
+    /**
+     * @var string
+     */
     public $name;
 
     /**
@@ -106,5 +111,10 @@ final class Item
             return;
         }
         --$this->sell_in;
+    }
+
+    private function isConjured(): bool
+    {
+        return substr($this->name, 0, strlen(self::$conjured)) === self::$conjured;
     }
 }
