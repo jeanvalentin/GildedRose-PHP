@@ -47,4 +47,64 @@ final class Item
     {
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
     }
+
+    public function updateQuality(): void
+    {
+        $this->computeQuality();
+        $this->fixQuality();
+        $this->computeSellIn();
+    }
+
+    private function computeQuality(): void
+    {
+        switch ($this->name) {
+            case self::$aged:
+                ++$this->quality;
+                if ($this->sell_in <= 0) {
+                    ++$this->quality;
+                }
+                break;
+            case self::$backstage_passes:
+                ++$this->quality;
+                if ($this->sell_in <= 10) {
+                    ++$this->quality;
+                }
+                if ($this->sell_in <= 5) {
+                    ++$this->quality;
+                }
+                if ($this->sell_in <= 0) {
+                    $this->quality = 0;
+                }
+                break;
+            case self::$legendary:
+                break;
+            default:
+                --$this->quality;
+                if ($this->sell_in <= 0) {
+                    --$this->quality;
+                }
+                break;
+        }
+    }
+
+    private function fixQuality(): void
+    {
+        if (self::$legendary === $this->name) {
+            return;
+        }
+        if ($this->quality >= 50) {
+            $this->quality = 50;
+        }
+        if ($this->quality <= 0) {
+            $this->quality = 0;
+        }
+    }
+
+    private function computeSellIn(): void
+    {
+        if (self::$legendary === $this->name) {
+            return;
+        }
+        --$this->sell_in;
+    }
 }
